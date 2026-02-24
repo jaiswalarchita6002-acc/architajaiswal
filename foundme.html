@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>lost Them,Found me - Archita Jaiswal Blogs</title>
+
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="search-style.css">
+
+
+   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+      <script>
+const BLOG_ID = "trauma";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAlxJ134nGzQGwiKW30Rj9B1dr5IqQlblI",
+      authDomain: "comment-123.firebaseapp.com",
+      projectId: "comment-123",
+      storageBucket: "comment-123.firebasestorage.app",
+      messagingSenderId: "1094221233460",
+      appId: "1:1094221233460:web:a149795852cdfe0908f961",
+      measurementId: "G-N88Z8M65Q1"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.firestore();
+    window.auth = firebase.auth(); </script>
+
+  <script src="script1.js" defer></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+
+  <style>
+    /* --- CUSTOM FONTS --- */
+    @font-face { font-family: "Valentina"; src: url("Hello Valentina.ttf"); }
+
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      color: #000;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* --- NAVIGATION --- */
+    .site-nav {
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .site-logo { font-family: "Valentina", cursive; font-size: 1.8rem; text-decoration: none; color: #000; display: flex; align-items: center; }
+    .site-logo span { background: black; color: white; padding: 2px 8px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.8rem; margin-left: 8px; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #888; }
+
+    /* --- LAYOUT --- */
+    .main-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 40px; }
+
+    /* --- HERO SECTION --- */
+    .hero-container { position: relative; width: 100%; margin-bottom: 120px; }
+    .hero-image { width: 100%; height: 550px; object-fit: cover; display: block; border: 1px solid #eee; }
+    .title-card { position: absolute; bottom: -45px; left: 50px; background: white; border: 1px solid #000; padding: 8px; z-index: 10; box-shadow: 10px 10px 0px rgba(0,0,0,0.05); }
+    .title-card-inner { border: 1px solid #000; padding: 35px 50px; background: white; text-align: center; }
+    .title-card h1 { font-weight: 800; font-size: 2.4rem; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+    .title-meta { font-size: 0.65rem; color: #181818; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* --- CONTENT GRID --- */
+    .content-container { display: grid; grid-template-columns: 2fr 1.2fr; gap: 60px; align-items: start; }
+    .article-text { font-size: 1rem; line-height: 1.9; color: #333; }
+    .article-text p { margin-bottom: 30px; }
+    .pull-quote { font-family: 'Shadows Into Light', cursive; font-size: 1.9rem; color: #000; border-left: 4px solid #000; padding: 10px 30px; margin: 50px 0; line-height: 1.3; }
+
+    /* --- COMMENT SECTION --- */
+    .comment-section { grid-column: 1 / -1; margin-top: 80px; padding-top: 50px; border-top: 1px solid #eee; }
+    #commentBox { width: 100%; height: 120px; border: 1px solid #000; padding: 15px; font-family: inherit; box-sizing: border-box; margin-top: 20px; }
+    #submitBtn { background: black; color: white; border: none; padding: 12px 40px; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; margin-top: 15px; cursor: pointer; }
+    .comment-item { background: #f9f9f9; padding: 20px; margin-top: 20px; border-left: 3px solid #000; display: flex; justify-content: space-between; }
+
+    /* --- RESPONSIVENESS --- */
+
+    @media (max-width: 600px) {
+  /* Keeps sidebar on the right (60/40 split) */
+  .content-container { 
+    grid-template-columns: 1.6fr 1.4fr; 
+    gap: 15px; 
+  }
+
+  .hero-image { height: 250px; }
+  .title-card { left: 10px; right: 10px; bottom: -30px; }
+  .title-card-inner { padding: 15px; }
+  .title-card h1 { font-size: 1rem; }
+  
+  /* Shrink sidebar fonts so they don't overlap */
+  .widget-title { font-size: 0.55rem; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 0.6rem; }
+}
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="site-logo">Archita <span>BLOGS</span></a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+    </div>
+  </nav>
+
+  <div class="main-wrapper">
+    <header class="hero-container">
+      <img src="foundme.jpeg" class="hero-image" alt="foundme" />
+      <div class="title-card">
+        <div class="title-card-inner">
+          <h1>Lost Them , Found Me</h1>
+          <div class="title-meta"><b>BLOGS</b> by <strong>ARCHITA JAISWAL</strong> — FEB 24, 2026</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-container">
+      <article class="article-text">
+        <p>So it all began when I joined a new school all over again, for the very last time. To be very honest, I wasn’t nervous because it wasn’t something new for me. In fact, I was excited—excited because finally I had the opportunity to make real friends, because I knew that this time I wouldn’t be going anywhere. So whoever I made friends with was going to stay.</p>
+
+<p>With all these thoughts, I began my 9th grade. Honestly, in the first few months, I didn’t have any friends, but with time I became a part of this one friend group. They all had been studying here since class 1, so somewhere I was feeling envious of this fact. A doubt kept appearing in my mind: what if I wouldn’t fit into the group?</p>
+
+<p>But I ignored it for my own good. Slowly, with each passing day, we bonded more and more and made new memories each day. You know—hangouts, birthdays, excursions—it was all going great. Three years passed so quickly. I was genuinely happy.</p>
+
+<p>But then, I began to notice small things that made me realize I was slowly being sidelined by the group.</p>
+
+<p>They stopped inviting me to special occasions and casual hangouts and began acting as if I was always too busy, using my strict parenting as an excuse. I was going through all this when, one fine day, I received a call from one of my friends.</p>
+
+<p>The moment I answered the call, she burst out at me, and that’s when I realized that my mummy had called her mother and shared details about our hangouts with our guy friends, including how they sometimes paid for us, along with many other things. She even questioned her mother about whether she knew that her daughter was going out with guys and letting them pay for casual hangouts.</p>
+
+<p>And that wasn’t the end of it. The biggest shock was that she had done the same thing with all three of my female friends. She called all three of their mothers, and that’s when the real conflicts began between all of us.</p>
+
+<p>I won’t go deep into the things we said during the fight, but I’ll mention just this one thing because it was extremely disrespectful. At the end of the conversation, she called my mummy a bitch—yes, a BITCH. I mean, how can you say something like that about your friend’s mother? Or should I assume that we were never really friends all this whole freaking time? And my other two friends took her side. WTF?</p>
+
+<p>I was completely exhausted, emotionally drained, and disheartened. I was already overwhelmed, and then a harsh realization hit me—I was back to square one again. No friends, no love life, nothing. All alone. Just me. I had returned to where I started, but this time with memories that now hurt even more.</p>
+
+<p>For a whole fucking year, I was stuck in depression. I know depression is a big word, but if not that, then something very close to it at least. That entire year, I lived inside a cuboid—a year filled with self-doubt, so intense that I started hating myself. The Archita you see today is not the same person I was back then. Only I know how much I went through and how hard I fought to overcome it.</p>
+
+<p>This is just one of the incidents that led to my low self-esteem. There’s actually more, but then the blog would get too lengthy, so I’ll stop here. I just want to tell you what I learned from all this.</p>
+
+        <div class="pull-quote">
+          “You should always, always listen to all sides of the story before deciding anything."
+
+        </div>
+
+        <div class="pull-quote">
+          “Always prioritize yourself, because in the end, it’s you."
+
+        </div>
+        <div class="pull-quote">
+          “And last, but definitely not the least: DON'T TOLERATE ANY SORT OF SHIT ABOUT U."
+
+        </div>
+
+
+      </article>
+
+      <aside class="sidebar-right">
+
+        
+
+        <!-- SEARCH WIDGET -->
+
+<div class="sidebar-widget">
+
+  <div class="widget-inner">
+
+    <h3 class="widget-title">SEARCH BLOGS</h3>
+
+    <div>
+
+      <input
+        type="text"
+        id="blogSearch"
+        placeholder="Type to search..."
+        list="blogSuggestions"
+      >
+
+      <datalist id="blogSuggestions"></datalist>
+
+    </div>
+
+    <button
+      class="sidebar-btn"
+      onclick="handleSearch()"
+    >
+      GO
+    </button>
+
+  </div>
+
+</div>
+
+
+
+
+        <div class="sidebar-widget">
+
+          <div class="widget-inner">
+
+            <h3 class="widget-title">RECENT BLOGS</h3>
+
+            <ul style="list-style: none; padding:0; margin:0; font-size: 0.6rem; font-weight: 700; line-height: 2;">
+
+              <li><a href="new.html" style="text-decoration:none; color:black;">THE SHIFT</a></li>
+<li><a href="fresh-start.html" style="text-decoration:none; color:black;">FRESH START</a></li>
+<li><a href="date.html" style="text-decoration:none; color:black;">LOVE NOWADAYS</a></li>
+<li><a href="last.html" style="text-decoration:none; color:black;">LASTS</a></li>
+
+
+              
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="sidebar-widget">
+
+          <div class="widget-inner" style="background: black; color: white;">
+
+            <h3 class="widget-title" style="color:white; border-color:#333;">Subscribe VIA EMAIL</h3>
+
+            <p style="font-size: 0.5rem; color: #bbb; margin-bottom: 12px;">Get Notifications directly to your Inbox!</p>
+
+            <input type="email" id="subEmail" placeholder="Enter email..." style="width:100%; border:1px solid #333; background:#222; color:white; padding: 8px; box-sizing: border-box; font-size: 0.6rem; margin-bottom: 10px;">
+
+            <button onclick="subscribeEmail()" style="width:100%; background:white; color:black; border:none; padding:8px; font-weight:800; font-size:0.5rem; cursor:pointer;">JOIN THE CLUB</button>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+      <section class="comment-section">
+        <h3 class="widget-title" style="font-size: 1.2rem; border: none;">PEOPLE S' VIEWS</h3>
+        <textarea id="commentBox" placeholder="Write your thoughts here..."></textarea>
+        <button id="submitBtn" onclick="postComment()">Submit</button>
+        <div id="commentsList"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer style="text-align:center; padding: 60px 0; border-top: 1px solid #eee; margin-top: 60px;">
+    <p style="font-size: 0.6rem; letter-spacing: 2px; color: #aaa;">© 2026 Archita Jaiswal. All rights reserved.</p>
+  </footer>
+
+  
+
+  <script>
+    
+    let currentUser = null;
+
+    auth.onAuthStateChanged(user => { currentUser = user; renderComments(); });
+
+    function postComment() {
+      const text = document.getElementById("commentBox").value;
+      if (!currentUser) { auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); return; }
+      if (text.trim() === "") return;
+      db.collection("blogs").doc(BLOG_ID).collection("comments").add({
+        text: text, time: Date.now(), userId: currentUser.uid,
+        displayName: currentUser.displayName, userEmail: currentUser.email
+      });
+      document.getElementById("commentBox").value = "";
+    }
+
+    function renderComments() {
+      db.collection("blogs").doc(BLOG_ID).collection("comments").orderBy("time", "desc").onSnapshot(snap => {
+        let html = "";
+        snap.forEach(doc => {
+          const data = doc.data();
+          const isOwner = currentUser && currentUser.uid === data.userId;
+          html += `<div class="comment-item">
+            <div><strong>${data.displayName || 'Anon'}</strong><p>${data.text}</p></div>
+            ${isOwner ? `<button onclick="deleteComm('${doc.id}')" style="background:none; border:none; cursor:pointer;">🗑️</button>` : ""}
+          </div>`;
+        });
+        document.getElementById("commentsList").innerHTML = html;
+      });
+    }
+
+    function deleteComm(id) { if(confirm("Delete?")) db.collection("blogs").doc(BLOG_ID).collection("comments").doc(id).delete(); }
+  </script>
+</body>
+</html>
