@@ -13,7 +13,7 @@ const BLOG_OPTIONS = [
   "LOVE NOWADAYS",
   "College-mates or Critics?",
   "Love is NOT Blind!!",
-  "What the hell MEN!!!"
+  "What the hell MEN!!!",
   "Half Known , Half Hidden"
 ];
 
