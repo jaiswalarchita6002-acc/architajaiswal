@@ -90,6 +90,9 @@ function handleSearch() {
     "blind": "love.html",
 
     "men": "MEN.html"
+    "half": "unknown.html",
+    "known":"unknown.html",
+    "hidden":"unknown.html",
   };
 
 

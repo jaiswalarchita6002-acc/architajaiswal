@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Half Known , Half Hidden - Archita Jaiswal Blogs</title>
+
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="search-style.css">
+
+
+   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+      <script>
+const BLOG_ID = "known";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAlxJ134nGzQGwiKW30Rj9B1dr5IqQlblI",
+      authDomain: "comment-123.firebaseapp.com",
+      projectId: "comment-123",
+      storageBucket: "comment-123.firebasestorage.app",
+      messagingSenderId: "1094221233460",
+      appId: "1:1094221233460:web:a149795852cdfe0908f961",
+      measurementId: "G-N88Z8M65Q1"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.firestore();
+    window.auth = firebase.auth(); </script>
+
+  <script src="script1.js" defer></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+
+  <style>
+    /* --- CUSTOM FONTS --- */
+    @font-face { font-family: "Valentina"; src: url("Hello Valentina.ttf"); }
+
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      color: #000;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* --- NAVIGATION --- */
+    .site-nav {
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .site-logo { font-family: "Valentina", cursive; font-size: 1.8rem; text-decoration: none; color: #000; display: flex; align-items: center; }
+    .site-logo span { background: black; color: white; padding: 2px 8px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.8rem; margin-left: 8px; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #888; }
+
+    /* --- LAYOUT --- */
+    .main-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 40px; }
+
+    /* --- HERO SECTION --- */
+    .hero-container { position: relative; width: 100%; margin-bottom: 120px; }
+    .hero-image { width: 100%; height: 550px; object-fit: cover; display: block; border: 1px solid #eee; }
+    .title-card { position: absolute; bottom: -45px; left: 50px; background: white; border: 1px solid #000; padding: 8px; z-index: 10; box-shadow: 10px 10px 0px rgba(0,0,0,0.05); }
+    .title-card-inner { border: 1px solid #000; padding: 35px 50px; background: white; text-align: center; }
+    .title-card h1 { font-weight: 800; font-size: 2.4rem; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+    .title-meta { font-size: 0.65rem; color: #181818; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* --- CONTENT GRID --- */
+    .content-container { display: grid; grid-template-columns: 2fr 1.2fr; gap: 60px; align-items: start; }
+    .article-text { font-size: 1rem; line-height: 1.9; color: #333; }
+    .article-text p { margin-bottom: 30px; }
+    .pull-quote { font-family: 'Shadows Into Light', cursive; font-size: 1.9rem; color: #000; border-left: 4px solid #000; padding: 10px 30px; margin: 50px 0; line-height: 1.3; }
+
+    /* --- COMMENT SECTION --- */
+    .comment-section { grid-column: 1 / -1; margin-top: 80px; padding-top: 50px; border-top: 1px solid #eee; }
+    #commentBox { width: 100%; height: 120px; border: 1px solid #000; padding: 15px; font-family: inherit; box-sizing: border-box; margin-top: 20px; }
+    #submitBtn { background: black; color: white; border: none; padding: 12px 40px; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; margin-top: 15px; cursor: pointer; }
+    .comment-item { background: #f9f9f9; padding: 20px; margin-top: 20px; border-left: 3px solid #000; display: flex; justify-content: space-between; }
+
+    /* --- RESPONSIVENESS --- */
+
+    @media (max-width: 600px) {
+  /* Keeps sidebar on the right (60/40 split) */
+  .content-container { 
+    grid-template-columns: 1.6fr 1.4fr; 
+    gap: 15px; 
+  }
+
+  .hero-image { height: 250px; }
+  .title-card { left: 10px; right: 10px; bottom: -30px; }
+  .title-card-inner { padding: 15px; }
+  .title-card h1 { font-size: 1rem; }
+  
+  /* Shrink sidebar fonts so they don't overlap */
+  .widget-title { font-size: 0.55rem; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 0.6rem; }
+}
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="site-logo">Archita <span>BLOGS</span></a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+    </div>
+  </nav>
+
+  <div class="main-wrapper">
+    <header class="hero-container">
+      <img src="known.jpg" class="hero-image" alt="College Chaos" />
+      <div class="title-card">
+        <div class="title-card-inner">
+          <h1>Half known , Half Hidden</h1>
+          <div class="title-meta"><b>BLOGS</b> by <strong>ARCHITA JAISWAL</strong> — APR 12, 2026</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-container">
+      <article class="article-text">
+        <p>
+It’s not like I don’t have friends. I do—actually, a lot.<br><br>
+But I don’t know why I still feel like I don’t.<br><br>
+
+And I know the ones reading this are my friends too.<br>
+And honestly, I have no intention of making you feel bad—no, that’s not what this is about.<br>
+This is just my space, where I write what I feel and choose to share it with you.<br><br>
+
+I do have people—people I share jokes and memes with, people I sit and eat with, people I laugh and rant with sometimes.<br>
+But still… all of it feels like just a filtered version of me.<br><br>
+
+And the weird part? Even I don’t fully understand why I do that.<br><br>
+
+I try—I really do—to bring the truest version of myself to the table.<br>
+But it’s just too difficult.<br><br>
+
+Not because I’m shy.<br>
+Not because I’m afraid.<br>
+But because my past experiences weren’t great.<br><br>
+
+And whether I like it or not, they’ve shaped the way I talk and interact with people now.<br><br>
+
+They’ve taught me to build boundaries.<br>
+To protect myself.<br>
+To think twice—sometimes ten times—before I say anything or do anything.<br><br>
+
+Because there have been moments when I actually tried to open up.<br>
+And all I got in return was being ignored…<br>
+or being called “too emotional.”<br><br>
+
+As if that’s an insult.
+</p>
+
+<p>
+And you’d agree—everyone has that <strong>one person</strong>.<br>
+That one friend you can talk to about <strong>anything</strong>. Literally anything.<br><br>
+
+They don’t judge you for your <strong>stupid decisions</strong>.<br>
+They don’t cringe at your past or your <strong>trauma</strong>.<br>
+They don’t make you feel like you’re <strong>“too much.”</strong><br><br>
+
+They just… <strong>stay</strong>.<br><br>
+
+They care.<br>
+They support.<br>
+They understand.<br>
+They listen, and they give you <strong>real advice</strong>—<br>
+because they <strong>love you</strong><br>
+and they can’t stand seeing you <strong>hurt</strong>.<br><br>
+
+And I’ll admit it—<br>
+I haven’t found <strong>mine</strong> yet.<br><br>
+
+But it’s okay.<br><br>
+
+Life has just <strong>started</strong>.<br>
+There are so many <strong>days left</strong>, so many people left to meet.<br><br>
+
+I won’t lose <strong>hope</strong>.<br>
+I’ll keep building new bonds,<br>
+keep trying,<br>
+keep experiencing.<br><br>
+
+Because at the end of the day—<br>
+that’s what life is about, <strong>isn’t it?</strong>
+</p>
+
+        <div class="pull-quote">
+          “It’s not the absence of people that hurts, it’s the absence of being truly known and understood”
+        </div>
+      </article>
+
+      <aside class="sidebar-right">
+
+        
+
+        <!-- SEARCH WIDGET -->
+
+<div class="sidebar-widget">
+
+  <div class="widget-inner">
+
+    <h3 class="widget-title">SEARCH BLOGS</h3>
+
+    <div>
+
+      <input
+        type="text"
+        id="blogSearch"
+        placeholder="Type to search..."
+        list="blogSuggestions"
+      >
+
+      <datalist id="blogSuggestions"></datalist>
+
+    </div>
+
+    <button
+      class="sidebar-btn"
+      onclick="handleSearch()"
+    >
+      GO
+    </button>
+
+  </div>
+
+</div>
+
+
+
+
+        <div class="sidebar-widget">
+
+          <div class="widget-inner">
+
+            <h3 class="widget-title">RECENT BLOGS</h3>
+
+            <ul style="list-style: none; padding:0; margin:0; font-size: 0.6rem; font-weight: 700; line-height: 2;">
+
+              <li><a href="new.html" style="text-decoration:none; color:black;">THE SHIFT</a></li>
+<li><a href="fresh-start.html" style="text-decoration:none; color:black;">FRESH START</a></li>
+<li><a href="date.html" style="text-decoration:none; color:black;">LOVE NOWADAYS</a></li>
+<li><a href="last.html" style="text-decoration:none; color:black;">LASTS</a></li>
+
+
+              
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="sidebar-widget">
+
+          <div class="widget-inner" style="background: black; color: white;">
+
+            <h3 class="widget-title" style="color:white; border-color:#333;">Subscribe VIA EMAIL</h3>
+
+            <p style="font-size: 0.5rem; color: #bbb; margin-bottom: 12px;">Get Notifications directly to your Inbox!</p>
+
+            <input type="email" id="subEmail" placeholder="Enter email..." style="width:100%; border:1px solid #333; background:#222; color:white; padding: 8px; box-sizing: border-box; font-size: 0.6rem; margin-bottom: 10px;">
+
+            <button onclick="subscribeEmail()" style="width:100%; background:white; color:black; border:none; padding:8px; font-weight:800; font-size:0.5rem; cursor:pointer;">JOIN THE CLUB</button>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+      <section class="comment-section">
+        <h3 class="widget-title" style="font-size: 1.2rem; border: none;">PEOPLE S' VIEWS</h3>
+        <textarea id="commentBox" placeholder="Write your thoughts here..."></textarea>
+        <button id="submitBtn" onclick="postComment()">Submit</button>
+        <div id="commentsList"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer style="text-align:center; padding: 60px 0; border-top: 1px solid #eee; margin-top: 60px;">
+    <p style="font-size: 0.6rem; letter-spacing: 2px; color: #aaa;">© 2026 Archita Jaiswal. All rights reserved.</p>
+  </footer>
+
+  
+
+  <script>
+    
+    let currentUser = null;
+
+    auth.onAuthStateChanged(user => { currentUser = user; renderComments(); });
+
+    function postComment() {
+      const text = document.getElementById("commentBox").value;
+      if (!currentUser) { auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); return; }
+      if (text.trim() === "") return;
+      db.collection("blogs").doc(BLOG_ID).collection("comments").add({
+        text: text, time: Date.now(), userId: currentUser.uid,
+        displayName: currentUser.displayName, userEmail: currentUser.email
+      });
+      document.getElementById("commentBox").value = "";
+    }
+
+    function renderComments() {
+      db.collection("blogs").doc(BLOG_ID).collection("comments").orderBy("time", "desc").onSnapshot(snap => {
+        let html = "";
+        snap.forEach(doc => {
+          const data = doc.data();
+          const isOwner = currentUser && currentUser.uid === data.userId;
+          html += `<div class="comment-item">
+            <div><strong>${data.displayName || 'Anon'}</strong><p>${data.text}</p></div>
+            ${isOwner ? `<button onclick="deleteComm('${doc.id}')" style="background:none; border:none; cursor:pointer;">🗑️</button>` : ""}
+          </div>`;
+        });
+        document.getElementById("commentsList").innerHTML = html;
+      });
+    }
+
+    function deleteComm(id) { if(confirm("Delete?")) db.collection("blogs").doc(BLOG_ID).collection("comments").doc(id).delete(); }
+  </script>
+</body>
+</html>
