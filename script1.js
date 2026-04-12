@@ -14,6 +14,7 @@ const BLOG_OPTIONS = [
   "College-mates or Critics?",
   "Love is NOT Blind!!",
   "What the hell MEN!!!"
+  "Half Known , Half Hidden"
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -89,7 +90,7 @@ function handleSearch() {
 
     "blind": "love.html",
 
-    "men": "MEN.html"
+    "men": "MEN.html",
     "half": "unknown.html",
     "known":"unknown.html",
     "hidden":"unknown.html",
