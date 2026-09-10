@@ -14,9 +14,9 @@ const BLOG_OPTIONS = [
   "College-mates or Critics?",
   "Love is NOT Blind!!",
   "What the hell MEN!!!",
-  "Half Known , Half Hidden"
-  "It Turns Out , He Meant It"
-  "A Gentle Reminder!"
+  "Half Known , Half Hidden",
+  "It Turns Out , He Meant It",
+  "A Gentle Reminder!",
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
