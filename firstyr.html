@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Gentle Reminder! - Archita Jaiswal Blogs</title>
+
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="search-style.css">
+
+
+   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+      <script>
+const BLOG_ID = "firstyr";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAlxJ134nGzQGwiKW30Rj9B1dr5IqQlblI",
+      authDomain: "comment-123.firebaseapp.com",
+      projectId: "comment-123",
+      storageBucket: "comment-123.firebasestorage.app",
+      messagingSenderId: "1094221233460",
+      appId: "1:1094221233460:web:a149795852cdfe0908f961",
+      measurementId: "G-N88Z8M65Q1"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.firestore();
+    window.auth = firebase.auth(); </script>
+
+  <script src="script1.js" defer></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+
+  <style>
+    /* --- CUSTOM FONTS --- */
+    @font-face { font-family: "Valentina"; src: url("Hello Valentina.ttf"); }
+
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      color: #000;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* --- NAVIGATION --- */
+    .site-nav {
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .site-logo { font-family: "Valentina", cursive; font-size: 1.8rem; text-decoration: none; color: #000; display: flex; align-items: center; }
+    .site-logo span { background: black; color: white; padding: 2px 8px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.8rem; margin-left: 8px; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #888; }
+
+    /* --- LAYOUT --- */
+    .main-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 40px; }
+
+    /* --- HERO SECTION --- */
+    .hero-container { position: relative; width: 100%; margin-bottom: 120px; }
+    .hero-image { width: 100%; height: 550px; object-fit: cover; display: block; border: 1px solid #eee; }
+    .title-card { position: absolute; bottom: -45px; left: 50px; background: white; border: 1px solid #000; padding: 8px; z-index: 10; box-shadow: 10px 10px 0px rgba(0,0,0,0.05); }
+    .title-card-inner { border: 1px solid #000; padding: 35px 50px; background: white; text-align: center; }
+    .title-card h1 { font-weight: 800; font-size: 2.4rem; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+    .title-meta { font-size: 0.65rem; color: #181818; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* --- CONTENT GRID --- */
+    .content-container { display: grid; grid-template-columns: 2fr 1.2fr; gap: 60px; align-items: start; }
+    .article-text { font-size: 1rem; line-height: 1.9; color: #333; }
+    .article-text p { margin-bottom: 30px; }
+    .pull-quote { font-family: 'Shadows Into Light', cursive; font-size: 1.9rem; color: #000; border-left: 4px solid #000; padding: 10px 30px; margin: 50px 0; line-height: 1.3; }
+
+    /* --- COMMENT SECTION --- */
+    .comment-section { grid-column: 1 / -1; margin-top: 80px; padding-top: 50px; border-top: 1px solid #eee; }
+    #commentBox { width: 100%; height: 120px; border: 1px solid #000; padding: 15px; font-family: inherit; box-sizing: border-box; margin-top: 20px; }
+    #submitBtn { background: black; color: white; border: none; padding: 12px 40px; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; margin-top: 15px; cursor: pointer; }
+    .comment-item { background: #f9f9f9; padding: 20px; margin-top: 20px; border-left: 3px solid #000; display: flex; justify-content: space-between; }
+
+    /* --- RESPONSIVENESS --- */
+
+    @media (max-width: 600px) {
+  /* Keeps sidebar on the right (60/40 split) */
+  .content-container { 
+    grid-template-columns: 1.6fr 1.4fr; 
+    gap: 15px; 
+  }
+
+  .hero-image { height: 250px; }
+  .title-card { left: 10px; right: 10px; bottom: -30px; }
+  .title-card-inner { padding: 15px; }
+  .title-card h1 { font-size: 1rem; }
+  
+  /* Shrink sidebar fonts so they don't overlap */
+  .widget-title { font-size: 0.55rem; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 0.6rem; }
+}
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="site-logo">Archita <span>BLOGS</span></a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+    </div>
+  </nav>
+
+  <div class="main-wrapper">
+    <header class="hero-container">
+      <img src="firstyr.jpeg" class="hero-image" alt="firstyr" />
+      <div class="title-card">
+        <div class="title-card-inner">
+          <h1>A Gentle Reminder!</h1>
+          <div class="title-meta"><b>BLOGS</b> by <strong>ARCHITA JAISWAL</strong> — SEP 10, 2026</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-container">
+      <article class="article-text">
+        <p>It's been a long time since I last posted any blogs related to my college life. One year has already passed; only 3 years are left. You may ask, why "only"? 3 years is a long time, isn't it? NO, maybe for some people it looks like a long time, but not to me, cuz I still have so many things on my college bucket list. Like, I wanna at least win 3 hackathons, make 2-3 minor and major projects, that too outside college, I wanna learn more languages, improve my public speaking, spoken English, and build confidence, and let's not forget, I wanna look the best version of myself on my graduation day, so yeah, wanna glow up too.</p>
+
+<p>Honestly, first year has been a rollercoaster ride of experiences and emotions. Actually, no matter which college you are in, character development is meant to happen, irrespective of how good you are at controlling yourself and staying calm around people or in situations. Making friends in college is hard, not because you are somewhat bad at it, NO, it's because people are not worth making friends with here. I'm not saying that one should have peak humour or high aura to be friends, but at least reciprocate the same energy as me. And guess what? People are failing at this too. They don't share notes, don't show up on the worst days, ditch you, and don't get me started on "finding love" here. If you have any hopes left, better flush it, buddy. There's no scope here.</p>
+
+<p>But there's a good side to all this too, like now I've learned to sit and eat in solitude. The by-product of it is that now I have good playlists. Now I don't need anyone's company just because I feel lonely. Now I only talk to people who treat me the same way I treat them. People who show up, who care. And about love, well, I haven't found it yet, and I'm not even in desperate need to find it as well. Because I feel when the timing is right, love will find its way to me.</p>
+
+<p>Also, I've somewhat developed a good sense of humour and a great music taste after I entered college life, even though I still listen to those 10 songs on repeat. I no longer feel left out in any group fun banters. And all this whole past year, I had been experimenting a lot with skincare AND makeup, SO I've finally found the right products and shades that work for me. Last but definitely not the least, developing a good sticker pack for every emotion is still left to do, and I'm working on it.</p>
+
+<p>And for those who are reading this, my advice to you guys would be that don't be in this delusion that everybody is gonna judge me or mock me for doing and taking certain decisions or steps, or will make fun of my personality or looks. I'll tell you, people in college are more concerned about what is happening in their own life, how THEY look, how THEIR personality is, and whether what THEY are doing is good for THEM or not. So just relax, let others think whatever, and you do your thing.</p>
+
+<p>Never lower your standards for anyone, experiment as much as you can with yourself, say yes to those spontaneous plans, always make time for your hobbies, try every possible thing to look and be the best version of yourself, inside-out, on campus. Best of luck for the next 3 years!!!
+</p>
+
+        
+      </article>
+
+      <aside class="sidebar-right">
+
+        
+
+        <!-- SEARCH WIDGET -->
+
+<div class="sidebar-widget">
+
+  <div class="widget-inner">
+
+    <h3 class="widget-title">SEARCH BLOGS</h3>
+
+    <div>
+
+      <input
+        type="text"
+        id="blogSearch"
+        placeholder="Type to search..."
+        list="blogSuggestions"
+      >
+
+      <datalist id="blogSuggestions"></datalist>
+
+    </div>
+
+    <button
+      class="sidebar-btn"
+      onclick="handleSearch()"
+    >
+      GO
+    </button>
+
+  </div>
+
+</div>
+
+
+
+
+        <div class="sidebar-widget">
+
+          <div class="widget-inner">
+
+            <h3 class="widget-title">RECENT BLOGS</h3>
+
+            <ul style="list-style: none; padding:0; margin:0; font-size: 0.6rem; font-weight: 700; line-height: 2;">
+
+              <li><a href="chaos.html" style="text-decoration:none; color:black;">COLLEGE_ MATES OR CRITICS?</a></li>
+<li><a href="fresh-start.html" style="text-decoration:none; color:black;">FRESH START</a></li>
+<li><a href="date.html" style="text-decoration:none; color:black;">LOVE NOWADAYS</a></li>
+<li><a href="last.html" style="text-decoration:none; color:black;">LASTS</a></li>
+
+
+              
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="sidebar-widget">
+
+          <div class="widget-inner" style="background: black; color: white;">
+
+            <h3 class="widget-title" style="color:white; border-color:#333;">Subscribe VIA EMAIL</h3>
+
+            <p style="font-size: 0.5rem; color: #bbb; margin-bottom: 12px;">Get Notifications directly to your Inbox!</p>
+
+            <input type="email" id="subEmail" placeholder="Enter email..." style="width:100%; border:1px solid #333; background:#222; color:white; padding: 8px; box-sizing: border-box; font-size: 0.6rem; margin-bottom: 10px;">
+
+            <button onclick="subscribeEmail()" style="width:100%; background:white; color:black; border:none; padding:8px; font-weight:800; font-size:0.5rem; cursor:pointer;">JOIN THE CLUB</button>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+      <section class="comment-section">
+        <h3 class="widget-title" style="font-size: 1.2rem; border: none;">PEOPLE S' VIEWS</h3>
+        <textarea id="commentBox" placeholder="Write your thoughts here..."></textarea>
+        <button id="submitBtn" onclick="postComment()">Submit</button>
+        <div id="commentsList"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer style="text-align:center; padding: 60px 0; border-top: 1px solid #eee; margin-top: 60px;">
+    <p style="font-size: 0.6rem; letter-spacing: 2px; color: #aaa;">© 2026 Archita Jaiswal. All rights reserved.</p>
+  </footer>
+
+  
+
+  <script>
+    
+    let currentUser = null;
+
+    auth.onAuthStateChanged(user => { currentUser = user; renderComments(); });
+
+    function postComment() {
+      const text = document.getElementById("commentBox").value;
+      if (!currentUser) { auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); return; }
+      if (text.trim() === "") return;
+      db.collection("blogs").doc(BLOG_ID).collection("comments").add({
+        text: text, time: Date.now(), userId: currentUser.uid,
+        displayName: currentUser.displayName, userEmail: currentUser.email
+      });
+      document.getElementById("commentBox").value = "";
+    }
+
+    function renderComments() {
+      db.collection("blogs").doc(BLOG_ID).collection("comments").orderBy("time", "desc").onSnapshot(snap => {
+        let html = "";
+        snap.forEach(doc => {
+          const data = doc.data();
+          const isOwner = currentUser && currentUser.uid === data.userId;
+          html += `<div class="comment-item">
+            <div><strong>${data.displayName || 'Anon'}</strong><p>${data.text}</p></div>
+            ${isOwner ? `<button onclick="deleteComm('${doc.id}')" style="background:none; border:none; cursor:pointer;">🗑️</button>` : ""}
+          </div>`;
+        });
+        document.getElementById("commentsList").innerHTML = html;
+      });
+    }
+
+    function deleteComm(id) { if(confirm("Delete?")) db.collection("blogs").doc(BLOG_ID).collection("comments").doc(id).delete(); }
+  </script>
+</body>
+</html>

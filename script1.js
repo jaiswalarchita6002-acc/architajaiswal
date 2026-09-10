@@ -15,6 +15,8 @@ const BLOG_OPTIONS = [
   "Love is NOT Blind!!",
   "What the hell MEN!!!",
   "Half Known , Half Hidden"
+  "It Turns Out , He Meant It"
+  "A Gentle Reminder!"
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -94,6 +96,14 @@ function handleSearch() {
     "half": "unknown.html",
     "known":"unknown.html",
     "hidden":"unknown.html",
+    "It":"reject.html",
+    "It":"reject.html",
+    "turns":"reject.html",
+    "out":"reject.html",
+    "he":"reject.html",
+    "meant":"reject.html",
+    "gentle":"firstyr.html",
+    "reminder":"firstyr.html",
   };
 
 
