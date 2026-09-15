@@ -17,6 +17,7 @@ const BLOG_OPTIONS = [
   "Half Known , Half Hidden",
   "It Turns Out , He Meant It",
   "A Gentle Reminder!",
+  "Not Supposed To Say",
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -104,6 +105,10 @@ function handleSearch() {
     "meant":"reject.html",
     "gentle":"firstyr.html",
     "reminder":"firstyr.html",
+    "Not":"daughter.html",
+    "Supposed":"daughter.html",
+    "To":"daughter.html",
+    "Say":"daughter.html",
   };
 
 
