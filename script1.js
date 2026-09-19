@@ -18,6 +18,7 @@ const BLOG_OPTIONS = [
   "It Turns Out , He Meant It",
   "A Gentle Reminder!",
   "Not Supposed To Say",
+  "Oh C'Mon Dude !",
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -109,6 +110,9 @@ function handleSearch() {
     "Supposed":"daughter.html",
     "To":"daughter.html",
     "Say":"daughter.html",
+    "Oh":"cmon.html",
+    "C'Mon":"cmon.html",
+    "Dude":"cmon.html",
   };
 
 
